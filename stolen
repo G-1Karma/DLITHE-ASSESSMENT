@@ -1,0 +1,16 @@
+def calculate_maximum_stolen_value(house_values):
+    if not house_values:
+        return 0
+    if len(house_values) == 1:
+        return house_values[0]
+
+    prev1, prev2 = 0, 0
+    for value in house_values:
+        current = max(value + prev2, prev1)
+        prev2, prev1 = prev1, current
+
+    return prev1
+
+if __name__ == "__main__":
+    house_values = [6, 7, 1, 3, 8, 2, 5]
+    print("The maximum stolen value is:", calculate_maximum_stolen_value(house_values))
